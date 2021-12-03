@@ -27,6 +27,15 @@ module.exports = function (connection, Sequelize) {
     },
   });
 
+  User.associate = function (models) {
+    // Associating User with Purchases, Reviews
+    // User is parent table to reviews, purchases
+    User.hasMany(models.Blog, {
+      onDelete: "cascade",
+    });
+
+  };
+
   User.beforeCreate(hashPassword);
 
   return User;

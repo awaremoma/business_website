@@ -53,7 +53,7 @@ const userController = {
       res.json(ex);
     }
   },
-  updateUser_forgot_pw: async function (req, res) {
+  updateUser_forgot_pw: async function (req, res) { //Can't test this until we have a token after logging in
     try {
       const { userId, token } = req.params;
       const { password } = req.body;

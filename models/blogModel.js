@@ -13,15 +13,13 @@ module.exports = function (connection, Sequelize) {
       validate: {
         len: [5, 50],
 
-        isEmail: true,
       },
     },
     text: {
         type: Sequelize.STRING,
         validate: {
-          len: [5, 50],
+          len: [5, 500],
   
-          isEmail: true,
         },
       },
   });

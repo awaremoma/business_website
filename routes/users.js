@@ -7,10 +7,8 @@ const userController = require("../controllers/userController");
 router.post("/", userController.registerUser); //"/api/users"
 // //getting user by id
 router.get("/:id", auth, userController.getUserById);
-// //get all
-// router.get("/", [auth, admin], userController.getAllUsers);
-// //update by id
-// router.put("/:id", userController.updateUser);
+//update by id
+router.put("/:id", userController.updateUser);
 // //update forgot pw
 // router.put(
 //   "/updateForgotPw/:userId/:token",

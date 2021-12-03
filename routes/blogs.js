@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const emailController = require("../controllers/emailController");
-//router.post("/contact", emailController.contact);
+const blogController = require("../controllers/blogController");
 
-// router.post("/register", emailController.register);
+router.post("/", blogController.createNewBlog); //"/api/blogs"
 
-// //router.post("/purchase", emailController.purchase);
+router.delete("/byPKId/:id", blogController.deleteBlogByPKId);
 
 // router.post("/forgotPassword/:email", emailController.sendForgot_pw_email);
 
