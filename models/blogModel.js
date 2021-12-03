@@ -6,7 +6,7 @@ const hashPassword = async function (user) {
 };
 
 module.exports = function (connection, Sequelize) {
-  const User = connection.define("Blog", {
+  const Blog = connection.define("Blog", {
     // Giving the Author model a name of type STRING
     subject: {
       type: Sequelize.STRING,
@@ -26,7 +26,15 @@ module.exports = function (connection, Sequelize) {
       },
   });
 
-  User.beforeCreate(hashPassword);
+    //belongs to creates a Foreign key on the Review Table
+    Blog.associate = function (models) {
+      Blog.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false,
+        },
+      });
+  
+    };
 
-  return User;
+  return Blog;
 };

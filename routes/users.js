@@ -4,9 +4,9 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const userController = require("../controllers/userController");
 //registering user (hash pw in model hook)
-// router.post("/", userController.registerUser);
+router.post("/", userController.registerUser); //"/api/users"
 // //getting user by id
-// router.get("/:id", auth, userController.getUserById);
+router.get("/:id", auth, userController.getUserById);
 // //get all
 // router.get("/", [auth, admin], userController.getAllUsers);
 // //update by id
