@@ -6,6 +6,12 @@ router.post("/", blogController.createNewBlog); //"/api/blogs"
 
 router.delete("/byPKId/:id", blogController.deleteBlogByPKId);
 
-// router.post("/forgotPassword/:email", emailController.sendForgot_pw_email);
+router.get("/", blogController.getAllBlogs);
+
+router.get("/byPKId/:id", blogController.getBlogByPKId);
+
+router.get("/byUserId/:id", blogController.getBlogByUserId);
+
+router.put("/byPKId/:id", blogController.updateBlogById);
 
 module.exports = router;
