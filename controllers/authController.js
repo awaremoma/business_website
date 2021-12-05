@@ -7,22 +7,30 @@ const { appUrl, deployedAppUrl } = require("../config/urlConfig.json");
 const authController = {
   login: async function (req, res) {
     const { email, password } = req.body;
+    console.log("password", password);
     try {
-      let user = await db.User.findOne({
+      let { dataValues: user } = await db.User.findOne({
         where: {
           email: email,
         }
       });
+      console.log("user-----",typeof user.password);
       if (!user) return res.status(400).send("Invalid Email and / or password");
       const validPassword = await bcrypt.compare(password, user.password);
+      console.log("validPassword-----",validPassword);
       if (!validPassword)
         return res.status(400).send("Invalid Email and / or password");
 
       const token = authController.generateAuthToken(user);
+      console.log("token",token);
+      res.cookie("AUTH_SESSION_TOKEN", token, {
+        expires: new Date(Date.now() + 7200000), //2hr
+        secure: process.env.NODE_ENV === "production",
+      });
 
-      res.header("x-auth-token", token).send(token);
+      res.json({ token });
     } catch (ex) {
-      console.log("-----Error-----", ex);
+    
       res.json(ex);
     }
   },
@@ -72,17 +80,15 @@ const authController = {
     }
   },
   generateAuthToken: function (user) {
+      console.log("gat user", user);
     return jwt.sign(
       {
         id: user.id,
         isAdmin: !user.isAdmin ? false : true,
-        firstName: user.firstName,
-        lastName: user.lastName,
         email: user.email,
-        Purchases: user.Purchases,
       },
-      process.env.JWT_PRIVATEKEY,
-      { expiresIn: 3600 } //make it expire in one hr
+      "Temporary_dev_key",//process.env.JWT_PRIVATEKEY,
+      { expiresIn: 7200 } //make it expire in one hr
     );
   },
   isTokenValid: async function (req, res) {
