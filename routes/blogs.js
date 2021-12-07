@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const blogController = require("../controllers/blogController");
+const upload = require("../middleware/upload");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
-router.post("/", blogController.createNewBlog); //"/api/blogs"
+router.post("/",upload.single("file"),[auth,admin], blogController.createNewBlog); //"/api/blogs"
 
 router.delete("/byPKId/:id", blogController.deleteBlogByPKId);
 

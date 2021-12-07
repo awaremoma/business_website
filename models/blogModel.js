@@ -22,6 +22,9 @@ module.exports = function (connection, Sequelize) {
   
         },
       },
+      filePath: {
+        type: Sequelize.STRING,
+      },
   });
 
     //belongs to creates a Foreign key on the Review Table

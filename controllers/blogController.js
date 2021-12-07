@@ -1,8 +1,18 @@
 const db = require("../models");
+const fs = require("fs");
 
 const blogController = {
     createNewBlog: async function (req, res) {
-    
+      //write the file to a temp folder
+      const filePath = __basedir + "/resources/static/assets/tmp/" + req.file.filename;//to save to the DB
+      const data =  fs.readFileSync(
+            __basedir + "/resources/static/assets/uploads/" + req.file.filename
+           );
+           //write file to temp folder
+      fs.writeFileSync(
+        filePath,
+        data
+      );
     try {
         const blog = await db.Blog.create(req.body); //"/api/blogs"
         res.json(blog);
