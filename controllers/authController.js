@@ -14,15 +14,12 @@ const authController = {
           email: email,
         }
       });
-      console.log("user-----",typeof user.password);
       if (!user) return res.status(400).send("Invalid Email and / or password");
       const validPassword = await bcrypt.compare(password, user.password);
-      console.log("validPassword-----",validPassword);
       if (!validPassword)
         return res.status(400).send("Invalid Email and / or password");
 
       const token = authController.generateAuthToken(user);
-      console.log("token",token);
       res.cookie("AUTH_SESSION_TOKEN", token, {
         expires: new Date(Date.now() + 7200000), //2hr
         secure: process.env.NODE_ENV === "production",
@@ -75,12 +72,12 @@ const authController = {
 
       res.json(result);
     } catch (ex) {
-      console.log("-----Error-----", ex);
+ 
       res.json(ex);
     }
   },
   generateAuthToken: function (user) {
-      console.log("gat user", user);
+     
     return jwt.sign(
       {
         id: user.id,
