@@ -1,0 +1,4 @@
+{
+    "apiUrl": "http://localhost:3801/api",
+    "deployedUrl": "https://awaremoma.herokuapp.com"
+}

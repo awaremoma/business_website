@@ -1,4 +1,4 @@
 {
-    "appUrl": "http://localhost:3000",
+    "appUrl": "http://localhost:3001",
     "deployedAppUrl": "https://awaremoma.herokuapp.com"
 }
