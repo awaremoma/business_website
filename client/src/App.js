@@ -4,7 +4,8 @@ import auth from "./services/authService";
 import { ToastContainer, toast } from "react-toastify";
 import ClientRoutes from "./components/layout/ClientRoutes";
 import NavBar from "./components/layout/Navbar";
-import { Container, Header, Content, FlexboxGrid, Footer } from "rsuite";
+import { Container, Header, Content, FlexboxGrid, Footer, Sidebar } from "rsuite";
+import SideNavigation from "./components/layout/SideNavigation";
 class App extends Component {
   state = {
     user: {
@@ -19,12 +20,17 @@ class App extends Component {
     activeTab: "Home",
     clientWidth: document.documentElement.clientWidth,
     validPwToken: null,
+    sideNavOpened: true
   };
 
   componentDidMount() {
     //const user = auth.getTokenFromCookie();
     const { user } = this.state;
     this.setState({ user });
+  }
+
+  toggleSideNav = ()  =>{
+    this.setState({ sideNavOpened: !this.state.sideNavOpened})
   }
 
   handleSetActiveTab = (tab) => {
@@ -46,20 +52,26 @@ class App extends Component {
   };
 
   render() {
-    const { user, activeTab, clientWidth, validPwToken } = this.state;
+    const { user, activeTab, clientWidth, validPwToken, sideNavOpened } = this.state;
     window.addEventListener("resize", this.displayWindowSize);
     return (
       <>
         <Container>
           <Header>
-            {/* <NavBar
+            <NavBar
               handleSetActiveTab={this.handleSetActiveTab}
+              handleToggleSideNav={this.toggleSideNav}
               user={user}
               activeTab={activeTab}
-            /> */}
+            /> 
           </Header>
-          <Content className="h100" style={{ backgroundColor: "#DAE1E8" }}>
+          <Container>
+          <Content className="h100">
             <ToastContainer autoClose={3000} hideProgressBar />
+            { sideNavOpened ? <Sidebar><SideNavigation/></Sidebar> : ""}
+            
+            
+            
             
             <ClientRoutes
               user={user}
@@ -71,6 +83,8 @@ class App extends Component {
               handleSetUser={this.handleSetUser}
             /> 
           </Content>
+          </Container>
+
         </Container> 
         
       </>

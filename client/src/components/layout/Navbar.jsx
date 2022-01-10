@@ -1,22 +1,26 @@
-const NavigationBar = () => {
+import React from "react";
+//import { Navbar, Nav, Dropdown } from "rsuite";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+const NavigationBar = ({ handleToggleSideNav }) => {
   return (
-    <Navbar {...props}>
-      <Navbar.Brand href="#">RSUITE</Navbar.Brand>
-      <Nav onSelect={onSelect} activeKey={activeKey}>
-        <Nav.Item eventKey="1" icon={<Home />}>
-          Home
-        </Nav.Item>
-        <Nav.Item eventKey="2">News</Nav.Item>
-        <Nav.Item eventKey="3">Products</Nav.Item>
-        <Dropdown title="About">
-          <Dropdown.Item eventKey="4">Company</Dropdown.Item>
-          <Dropdown.Item eventKey="5">Team</Dropdown.Item>
-          <Dropdown.Item eventKey="6">Contact</Dropdown.Item>
-        </Dropdown>
-      </Nav>
-      <Nav pullRight>
-        <Nav.Item icon={<Cog />}>Settings</Nav.Item>
-      </Nav>
+    <Navbar
+      bg="white"
+      expand="lg"
+      className="d-flex justify-content-center"
+      fixed="top"
+    >
+      <div style={{ width: "100%" }} className="row">
+        <div className="col-2 d-flex align-items-center">
+          <i
+            className="fas fa-bars"
+            onClick={han}
+            style={{ cursor: "pointer" }}
+          ></i>
+        </div>
+        <div className="col-10 d-flex justify-content-center">
+          <h5 className="nav-header-text">AwareMoma</h5>
+        </div>
+      </div>
     </Navbar>
   );
 };
