@@ -42,3 +42,7 @@ code {
   top: 0;
   z-index: 10;
 }
+
+.theme-font {
+  font-family: "Orelega One", cursive;
+}

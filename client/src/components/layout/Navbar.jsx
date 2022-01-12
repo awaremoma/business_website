@@ -13,12 +13,12 @@ const NavigationBar = ({ handleToggleSideNav }) => {
         <div className="col-2 d-flex align-items-center">
           <i
             className="fas fa-bars"
-            onClick={han}
+            onClick={() => handleToggleSideNav()}
             style={{ cursor: "pointer" }}
           ></i>
         </div>
         <div className="col-10 d-flex justify-content-center">
-          <h5 className="nav-header-text">AwareMoma</h5>
+          <h5 className="nav-header-text theme-font">AwareMoma</h5>
         </div>
       </div>
     </Navbar>

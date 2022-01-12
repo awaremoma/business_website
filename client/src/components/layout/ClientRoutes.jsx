@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // import ProtectedRoute from "../Shared/ProtectedRoute";
 // import UpdatePassword from "../Account/UpdatePassword";
 // import CartDetails from "../Cart/CartDetails";
-// import ContactForm from "../Contact/ContactForm";
+import ContactForm from "../contact/ContactForm";
 // import AdminProtectedRoute from "../Shared/AdminProctedRoute";
 import Home from "../home/Home";
 // import Logout from "../Logout/Logout";
@@ -83,6 +83,17 @@ const ClientRoutes = ({
       <Route path="/expiredLink" component={ExpiredLink} />
       <Route path="/contact" component={ContactForm} />
       <Route path="/logout" component={Logout} /> */}
+      <Route
+        path="/contact"
+        render={(props) => (
+          <ContactForm
+            {...props}
+            activeTab={activeTab}
+            handleSetActiveTab={handleSetActiveTab}
+            clientWidth={clientWidth}
+          />
+        )}
+      />
       <Route
         path="/home"
         render={(props) => (
